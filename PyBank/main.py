@@ -7,22 +7,47 @@ import csv
 # Find the file
 pybank_csv = os.path.join('Resources', 'PyBank_FinancialData.csv')
 
+# Make bank_data a list
 bank_data = []
 
 # Define the function and have it accept 'bank_data' as its sole parameter
 def print_bank_data(bank_data):
     
-    # Assign values to usefully named variables
+    # set total months
+    total_months = len(bank_data)
+
+    print(f'Total Months: {total_months}')
+
+    # Find Profit/Loss Total
     ProfLoss = 0
     
     for months in bank_data:
         ProfLoss += int(months[1])
 
-    print(ProfLoss)
-    # set total months
-    total_months = len(bank_data)
+    print(f'Total: ${ProfLoss}')
 
-    print(total_months)
+    # Create lists that only include the profits/losses and the change in profits/losses
+    pl_list = []
+    change_in_pl_list = []
+
+    # Loop through PL column of the data
+    for months in bank_data:
+        pl_list.append(int(months[1]))
+
+    #Create variable to identify where we are at in the list
+    i = 0
+
+    # Loop through and calculate the change between rows in the pl list
+    for numbers in range(len(pl_list) - 1):
+        change_in_pl_list.append(int(pl_list[i + 1]) - int(pl_list[i]))
+        i += 1
+
+    # Calculate the Avg Change
+    AvgChange = sum(change_in_pl_list) / len(change_in_pl_list)
+    AvgChange = round(AvgChange, 2)
+
+    print(AvgChange)
+
 
 
 # Read in the CSV
@@ -40,8 +65,7 @@ with open(pybank_csv, 'r') as csvfile:
         bank_data.append(row)
 
     # Print required output
-    print(f"Financial Analysis")
-    print(f"--------------------------")    
-    # print(f"Total months: {total_months}")
+    print(f'Financial Analysis')
+    print(f'--------------------------')    
     print_bank_data(bank_data)
 
