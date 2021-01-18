@@ -46,9 +46,19 @@ def print_bank_data(bank_data):
     AvgChange = sum(change_in_pl_list) / len(change_in_pl_list)
     AvgChange = round(AvgChange, 2)
 
-    print(AvgChange)
+    print(f'Average Change: ${AvgChange}')
 
+    # Calculate the greatest increase in profits
+    GreatestProfIncrease = max(change_in_pl_list)
+    index_increase_change = change_in_pl_list.index(GreatestProfIncrease) + 1
 
+    print(f'Greatest Increase in Profits: {bank_data[index_increase_change][0]} (${GreatestProfIncrease})')
+
+    # Calculate the greatest decrease in profits
+    GreatestProfDecrease = min(change_in_pl_list)
+    index_decrease_change = change_in_pl_list.index(GreatestProfDecrease) + 1
+
+    print(f'Greatest Decrease in Profits: {bank_data[index_decrease_change][0]} (${GreatestProfDecrease})')
 
 # Read in the CSV
 with open(pybank_csv, 'r') as csvfile:
