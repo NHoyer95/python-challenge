@@ -11,8 +11,23 @@ pybank_csv = os.path.join('Resources', 'PyBank_FinancialData.csv')
 bank_data = []
 
 # Define the function and have it accept 'bank_data' as its sole parameter
-def print_bank_data(bank_data):
+with open(pybank_csv, 'r') as csvfile:
+
+    # CSV reader specifies delimiter and variable that holds contents
+    csvreader = csv.reader(csvfile, delimiter=',')
+
+    # Read the header row 
+    csv_header = next(csvreader)
+
+    # Read each row of data after the header
+    for row in csvreader:
     
+        bank_data.append(row)
+    
+    # Print static header rows
+    print(f'Financial Analysis')
+    print(f'--------------------------')
+
     # set total months
     total_months = len(bank_data)
 
@@ -60,22 +75,18 @@ def print_bank_data(bank_data):
 
     print(f'Greatest Decrease in Profits: {bank_data[index_decrease_change][0]} (${GreatestProfDecrease})')
 
-# Read in the CSV
-with open(pybank_csv, 'r') as csvfile:
 
-    # CSV reader specifies delimiter and variable that holds contents
-    csvreader = csv.reader(csvfile, delimiter=',')
+# Write to the txt file
+output_path = os.path.join('Analysis', 'PyBankAnalysis.txt')
 
-    # Read the header row 
-    csv_header = next(csvreader)
+# Open the file using "write" mode.
+with open(output_path, 'w') as text_file:
 
-    # Read each row of data after the header
-    for row in csvreader:
-    
-        bank_data.append(row)
-
-    # Print required output
-    print(f'Financial Analysis')
-    print(f'--------------------------')    
-    print_bank_data(bank_data)
-
+    # Output the results
+    print(f'Financial Analysis', file = text_file)
+    print(f'--------------------------', file = text_file)
+    print(f'Total Months: {total_months}', file = text_file)
+    print(f'Total: ${ProfLoss}', file = text_file)
+    print(f'Average Change: ${AvgChange}', file = text_file)
+    print(f'Greatest Increase in Profits: {bank_data[index_increase_change][0]} (${GreatestProfIncrease})', file = text_file)
+    print(f'Greatest Decrease in Profits: {bank_data[index_decrease_change][0]} (${GreatestProfDecrease})', file = text_file)
