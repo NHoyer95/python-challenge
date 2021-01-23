@@ -10,7 +10,7 @@ pybank_csv = os.path.join('Resources', 'PyBank_FinancialData.csv')
 # Make bank_data a list
 bank_data = []
 
-# Define the function and have it accept 'bank_data' as its sole parameter
+# Read from PyBank using CSV reader
 with open(pybank_csv, 'r') as csvfile:
 
     # CSV reader specifies delimiter and variable that holds contents
