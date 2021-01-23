@@ -25,13 +25,13 @@ with open(pypoll_csv, 'r') as csvfile:
 
     # Print headers
     print('Election Results')
-    print('----------------------')
+    print('--------------------------')
 
     # Find the total number of votes cast
     total_votes = len(poll_data)
 
     print(f'Total Votes: {total_votes}')
-    print('----------------------')
+    print('--------------------------')
 
     # Use a dictionary to find candidates and vote counts
     candidates_votes = {}
@@ -61,23 +61,30 @@ with open(pypoll_csv, 'r') as csvfile:
         print(f'{final_list_candidates[i]}: {final_list_percents[i]:.2f}% ({final_list_votes[i]})')
         i += 1
 
-    print('----------------------')
+    print('--------------------------')
 
     print(f'Winner: {winner}')
 
-    print('----------------------')
+    print('--------------------------')
 
 
 
 # Write to the txt file
 output_path = os.path.join('Analysis', 'PyPollAnalysis.txt')
 
-# # Open the file using "write" mode.
-# with open(output_path, 'w') as text_file:
+# Open the file using "write" mode.
+with open(output_path, 'w') as text_file:
 
-#     # Print outputs
-#     print('Election Results', file = text_file)
-#     print('----------------------', file = text_file)
-#     print(f'Total Votes: {total_votes}', file = text_file)
-#     print('----------------------', file = text_file)
+    # Print outputs
+    print('Election Results', file = text_file)
+    print('--------------------------', file = text_file)
+    print(f'Total Votes: {total_votes}', file = text_file)
+    print('--------------------------', file = text_file)
+    i = 0
+    for row in final_list_candidates:
+        print(f'{final_list_candidates[i]}: {final_list_percents[i]:.2f}% ({final_list_votes[i]})', file = text_file)
+        i += 1
+    print('--------------------------', file = text_file)
+    print(f'Winner: {winner}', file = text_file)
+    print('--------------------------', file = text_file)
 

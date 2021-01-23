@@ -4,7 +4,7 @@
 import os
 import csv
 
-# Find the file
+# Find the PyBank csv file
 pybank_csv = os.path.join('Resources', 'PyBank_FinancialData.csv')
 
 # Make bank_data a list
@@ -76,7 +76,7 @@ with open(pybank_csv, 'r') as csvfile:
     print(f'Greatest Decrease in Profits: {bank_data[index_decrease_change][0]} (${GreatestProfDecrease})')
 
 
-# Write to the txt file
+# Write outputs to the txt file
 output_path = os.path.join('Analysis', 'PyBankAnalysis.txt')
 
 # Open the file using "write" mode.
